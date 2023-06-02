@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'game_screen.dart';
-import 'random_screen.dart';
 import 'about.dart';
 import 'crudindex.dart';
 
@@ -60,15 +59,6 @@ class _HomeScreenState extends State<HomeScreen> {
               await _signOut();
             },
           ),
-          IconButton(
-            icon: Icon(Icons.shuffle),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => RandomScreen()),
-              );
-            },
-          ),
         ],
       ),
       drawer: Drawer(
@@ -78,16 +68,6 @@ class _HomeScreenState extends State<HomeScreen> {
               title: Text('Home'),
               onTap: () {
                 Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: Text('Random'),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => RandomScreen()),
-                );
               },
             ),
             ListTile(
