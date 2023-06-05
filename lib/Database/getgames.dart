@@ -17,8 +17,7 @@ Future<List<Map<String, dynamic>>> getGames() async {
 
     final List<dynamic> responseData = json.decode(response.body)['data'];
     final List<Map<String, dynamic>> games = [];
-
-    if (responseData == List.empty()) throw Exception("Games database is empty");
+    
     for (var gameData in responseData) {
       games.add(gameData as Map<String, dynamic>);
     }

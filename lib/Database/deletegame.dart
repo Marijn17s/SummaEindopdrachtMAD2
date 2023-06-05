@@ -1,4 +1,5 @@
 import 'package:http/http.dart' as http;
+import 'dart:convert';
 import 'package:eindopdracht5/token_manager.dart';
 
 Future<void> deleteGame(int gameId) async {
@@ -11,7 +12,8 @@ Future<void> deleteGame(int gameId) async {
   );
 
   if (response.statusCode == 200) {
-
+    final result = jsonDecode(response.body);
+    TokenManager.bearerToken = result['access_token'];
   } else {
     throw Exception('Failed to delete game');
   }
