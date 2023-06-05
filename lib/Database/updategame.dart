@@ -2,7 +2,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 Future<void> updateGame1(Map<String, dynamic> gameData) async {
-  final url = Uri.parse('http://localhost:8000/games/${gameData['id']}'); // Assuming the API supports updating a game using the game ID
+  final url = Uri.parse('http://localhost:8000/api/games/${gameData['id']}'); // Assuming the API supports updating a game using the game ID
 
   final response = await http.put(
     url,

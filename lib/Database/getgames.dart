@@ -2,10 +2,11 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 Future<List<Map<String, dynamic>>> getGames1() async {
-  final url = Uri.parse('http://localhost:8000/games');
+  final url = Uri.parse('http://localhost:8000/api/games');
 
   final response = await http.get(url);
 
+  print(response);
   if (response.statusCode == 200) {
     final List<dynamic> responseData = json.decode(response.body);
     final List<Map<String, dynamic>> games = [];
