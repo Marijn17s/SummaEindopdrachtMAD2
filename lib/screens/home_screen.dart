@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'game_screen.dart';
-import 'about.dart';
-import 'crudindex.dart';
+import './game_screen.dart';
+import 'about_screen.dart';
+import 'crud_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key, required this.setSignedIn}) : super(key: key);

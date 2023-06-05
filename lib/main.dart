@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'home_screen.dart';
+import 'package:eindopdracht5/screens/home_screen.dart';
 import 'login.dart';
 
 void main() async {

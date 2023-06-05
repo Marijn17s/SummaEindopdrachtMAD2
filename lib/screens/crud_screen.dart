@@ -2,9 +2,9 @@ import 'package:eindopdracht5/Database/creategame.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'Database/getgames.dart';
-import 'Database/updategame.dart';
-import 'Database/deletegame.dart';
+import '../Database/getgames.dart';
+import '../Database/updategame.dart';
+import '../Database/deletegame.dart';
 
 class GamesListScreen extends StatefulWidget {
   final void Function() navigateToCrudIndex;
@@ -168,12 +168,6 @@ class _GamesListScreenState extends State<GamesListScreen> {
             ),
           );
         },
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          // go to game create form screen
-        },
-        child: Icon(Icons.add),
       ),
     );
   }
