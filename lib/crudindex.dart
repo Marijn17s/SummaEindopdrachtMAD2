@@ -3,36 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'Database/getgames.dart';
 import 'Database/updategame.dart';
-import 'Database/deletegames.dart';
-
-Future<List<Map<String, dynamic>>> getGames() async {
-  final url = Uri.parse('http://localhost:8000/games');
-  final response = await http.get(url);
-
-  if (response.statusCode == 200) {
-    final List<dynamic> responseData = json.decode(response.body);
-    final List<Map<String, dynamic>> games = [];
-
-    for (var gameData in responseData) {
-      games.add(gameData as Map<String, dynamic>);
-    }
-
-    return games;
-  } else {
-    throw Exception('Failed to fetch games');
-  }
-}
-
-Future<void> deleteGame(int gameId) async {
-  final response = await http.delete(deleteGame1(gameId) as Uri);
-
-  if (response.statusCode == 200) {
-    // Game deleted successfully
-    // Handle the response data if needed
-  } else {
-    throw Exception('Failed to delete game');
-  }
-}
+import 'Database/deletegame.dart';
 
 class GamesListScreen extends StatefulWidget {
   final void Function() navigateToCrudIndex;

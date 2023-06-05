@@ -1,6 +1,6 @@
 import 'package:http/http.dart' as http;
 
-Future<void> deleteGame1(int gameId) async {
+Future<void> deleteGame(int gameId) async {
   final url = Uri.parse('http://localhost:8000/api/games/$gameId'); // Assuming the API supports deleting a game using the game ID
 
   final response = await http.delete(url);

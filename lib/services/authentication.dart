@@ -3,14 +3,11 @@ import 'package:http/http.dart' as http;
 import '/token_manager.dart';
 
 class AuthenticationServices {
-  // static const String _baseApi = "http://localhost:8000/api";
-  static const String _baseApi = "http://localhost:8000/api";
-  static String _bearerToken = "";
 
   // api/register/
   static Future<bool> register (String email, String password) async {
     final response = await http.post(
-        Uri.parse('$_baseApi/register'),
+        Uri.parse('${TokenManager.baseApi}/register'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -26,7 +23,7 @@ class AuthenticationServices {
   // api/login/
   static Future<bool> login (String email, String password) async {
     final response = await http.post(
-        Uri.parse('$_baseApi/login'),
+        Uri.parse('${TokenManager.baseApi}/login'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -47,7 +44,7 @@ class AuthenticationServices {
   // api/logout/
   static Future<bool> logout (String email, String password) async {
     final response = await http.post(
-      Uri.parse('$_baseApi/logout'),
+      Uri.parse('${TokenManager.baseApi}/logout'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
         'Authorization': 'Bearer ${TokenManager.bearerToken}'
