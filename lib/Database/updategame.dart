@@ -15,16 +15,13 @@ Future<void> updateGame(Map<String, dynamic> gameData) async {
       'platforms': gameData['platforms'].map((platform) => platform['platform']['name']).toList().join(','), // Get the updated platforms as a comma-separated string
       'genres': gameData['genres'].map((genre) => genre['name']).toList().join(','), // Get the updated genres as a comma-separated string
       'developers': gameData['developers'].map((developer) => developer['name']).toList().join(','), // Get the updated developers as a comma-separated string
-      // Add other properties as needed
     },
   );
 
   if (response.statusCode == 200) {
-    // Game updated successfully
-    final responseData = json.decode(response.body);
-    // Handle the response data if needed
+    final result = jsonDecode(response.body);
+    TokenManager.bearerToken = result['access_token'];
   } else {
-    // Failed to update game
     throw Exception('Failed to update game');
   }
 }

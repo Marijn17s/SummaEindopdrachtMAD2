@@ -23,10 +23,7 @@ Future<void> createGame(Map<String, dynamic> gameData) async {
   if (response.statusCode == 200) {
     final result = jsonDecode(response.body);
     TokenManager.bearerToken = result['access_token'];
-    final responseData = json.decode(response.body);
-    // Handle the response data if needed
   } else {
-    // Failed to create game
     throw Exception('Failed to create game');
   }
 }
