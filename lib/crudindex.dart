@@ -1,3 +1,4 @@
+import 'package:eindopdracht5/Database/creategame.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -169,7 +170,9 @@ class _GamesListScreenState extends State<GamesListScreen> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: widget.navigateToCrudIndex,
+        onPressed: (){
+          // go to game create form screen
+        },
         child: Icon(Icons.add),
       ),
     );

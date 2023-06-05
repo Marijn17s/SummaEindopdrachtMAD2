@@ -17,7 +17,7 @@ Future<List<Map<String, dynamic>>> getGames() async {
 
     final List<dynamic> responseData = json.decode(response.body)['data'];
     final List<Map<String, dynamic>> games = [];
-    
+
     for (var gameData in responseData) {
       games.add(gameData as Map<String, dynamic>);
     }
