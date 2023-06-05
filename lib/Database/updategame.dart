@@ -1,7 +1,8 @@
 import 'package:http/http.dart' as http;
+import 'package:eindopdracht5/token_manager.dart';
 import 'dart:convert';
 
-Future<void> updateGame1(Map<String, dynamic> gameData) async {
+Future<void> updateGame(Map<String, dynamic> gameData) async {
   final url = Uri.parse('http://localhost:8000/api/games/${gameData['id']}'); // Assuming the API supports updating a game using the game ID
 
   final response = await http.put(
