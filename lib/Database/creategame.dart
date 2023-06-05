@@ -1,11 +1,10 @@
 import 'package:http/http.dart' as http;
+import 'package:eindopdracht5/token_manager.dart';
 import 'dart:convert';
 
 Future<void> createGame(Map<String, dynamic> gameData) async {
-  final url = Uri.parse('http://localhost:8000/games');
-
   final response = await http.post(
-    url,
+    Uri.parse('${TokenManager.baseApi}/games'),
     body: {
       'name': gameData['name'], // Get the name from the game data
       'rating': gameData['rating'].toString(), // Get the rating from the game data
@@ -14,12 +13,16 @@ Future<void> createGame(Map<String, dynamic> gameData) async {
       'platforms': gameData['platforms'].map((platform) => platform['platform']['name']).toList().join(','), // Get the platforms as a comma-separated string
       'genres': gameData['genres'].map((genre) => genre['name']).toList().join(','), // Get the genres as a comma-separated string
       'developers': gameData['developers'].map((developer) => developer['name']).toList().join(','), // Get the developers as a comma-separated string
-      // Add other properties as needed
+    },
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+      'Authorization': 'Bearer ${TokenManager.bearerToken}'
     },
   );
 
   if (response.statusCode == 200) {
-    // Game created successfully
+    final result = jsonDecode(response.body);
+    TokenManager.bearerToken = result['access_token'];
     final responseData = json.decode(response.body);
     // Handle the response data if needed
   } else {

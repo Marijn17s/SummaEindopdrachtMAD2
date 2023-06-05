@@ -3,18 +3,19 @@ import 'package:eindopdracht5/token_manager.dart';
 import 'dart:convert';
 
 Future<List<Map<String, dynamic>>> getGames() async {
-  print(TokenManager.bearerToken);
-  final response = await http.post(
-      Uri.parse('${TokenManager.baseApi}/register'),
+  final response = await http.get(
+      Uri.parse('${TokenManager.baseApi}/games'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
         'Authorization': 'Bearer ${TokenManager.bearerToken}'
       },
   );
-  print(response);
 
   if (response.statusCode == 200) {
-    final List<dynamic> responseData = json.decode(response.body);
+    final result = jsonDecode(response.body);
+    TokenManager.bearerToken = result['access_token'];
+
+    final List<dynamic> responseData = json.decode(response.body)['data'];
     final List<Map<String, dynamic>> games = [];
 
     for (var gameData in responseData) {
