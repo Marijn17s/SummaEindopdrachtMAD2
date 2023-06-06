@@ -12,7 +12,7 @@ Future<void> createGame(Map<String, dynamic> gameData) async {
     'genres': gameData['genres'].map((genre) => genre['name']).toList().join(','), // Get the genres as a comma-separated string
     'developers': gameData['developers'].map((developer) => developer['name']).toList().join(','), // Get the developers as a comma-separated string
   };
-  print(jsonEncode(body));
+
   final response = await http.post(
     Uri.parse('${TokenManager.baseApi}/games'),
     body: jsonEncode(body),
