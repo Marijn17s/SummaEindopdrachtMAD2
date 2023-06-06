@@ -103,7 +103,7 @@ class _GamesListScreenState extends State<GamesListScreen> {
                         context,
                         MaterialPageRoute(
                           builder: (context) =>
-                              UpdateGameScreen(game),
+                              UpdateGameScreen(gameData: game),
                         ),
                       );
                     },
@@ -174,24 +174,6 @@ class _GamesListScreenState extends State<GamesListScreen> {
   }
 }
 
-class UpdateGameScreen extends StatelessWidget {
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Update Game'),
-      ),
-      body: Center(
-        child: Text(
-          'Update Game - ${game['name']}',
-          style: TextStyle(fontSize: 20),
-        ),
-      ),
-    );
-  }
-}
-
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key, required this.setSignedIn}) : super(key: key);
 
@@ -230,11 +212,11 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void navigateToCrudIndex() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => UpdateGameScreen(game: ),
-      ),
-    );
+    // Navigator.push(
+    //   context,
+    //   MaterialPageRoute(builder: (context) => UpdateGameScreen(gameData: widget.game),
+    //   ),
+    // );
   }
 
   @override

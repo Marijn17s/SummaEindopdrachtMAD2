@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import '../Database/updategame.dart';
 
 class UpdateGameScreen extends StatefulWidget {
-  final Map<String, dynamic> game;
+  final Map<String, dynamic> gameData;
 
-  UpdateGameScreen({required this.game});
+  UpdateGameScreen({required this.gameData});
 
   @override
   _UpdateGameScreenState createState() => _UpdateGameScreenState();
@@ -19,10 +19,10 @@ class _UpdateGameScreenState extends State<UpdateGameScreen> {
   @override
   void initState() {
     super.initState();
-    nameController.text = widget.game['name'];
-    ratingController.text = widget.game['rating'].toString();
-    releasedController.text = widget.game['released'];
-    descriptionController.text = widget.game['description_raw'];
+    nameController.text = widget.gameData['name'];
+    ratingController.text = widget.gameData['rating'].toString();
+    releasedController.text = widget.gameData['released'];
+    descriptionController.text = widget.gameData['description_raw'];
   }
 
   @override
@@ -66,13 +66,13 @@ class _UpdateGameScreenState extends State<UpdateGameScreen> {
             ElevatedButton(
               onPressed: () {
                 // Update the game data with the new values
-                widget.game['name'] = nameController.text;
-                widget.game['rating'] = double.parse(ratingController.text);
-                widget.game['released'] = releasedController.text;
-                widget.game['description_raw'] = descriptionController.text;
+                widget.gameData['name'] = nameController.text;
+                widget.gameData['rating'] = double.parse(ratingController.text);
+                widget.gameData['released'] = releasedController.text;
+                widget.gameData['description_raw'] = descriptionController.text;
 
                 // Perform the update operation
-                updateGame(widget.game)
+                updateGame(widget.gameData)
                     .then((_) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
