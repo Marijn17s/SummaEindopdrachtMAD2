@@ -23,8 +23,8 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   Future<void> fetchGame(int id) async {
-    final response = await http.get(
-        Uri.parse('https://api.rawg.io/api/games/$id?key=89fc9780e97142e8bad7c4aa62f392d0'));
+    final response = await http.get(Uri.parse(
+        'https://api.rawg.io/api/games/$id?key=89fc9780e97142e8bad7c4aa62f392d0'));
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
       setState(() {
@@ -44,197 +44,200 @@ class _GameScreenState extends State<GameScreen> {
       ),
       body: isLoading
           ? Center(
-        child: CircularProgressIndicator(),
-      )
+              child: CircularProgressIndicator(),
+            )
           : Container(
-      decoration: BoxDecoration(
-      gradient: LinearGradient(
-      begin: Alignment.topCenter,
-      end: Alignment.bottomCenter,
-      colors: [Colors.blue.shade800, Colors.black],
-    ),
-    ),
-    child: SingleChildScrollView(
-    child: Column(
-    crossAxisAlignment: CrossAxisAlignment.stretch,
-    children: [
-    SizedBox(height: 20),
-    ClipRRect(
-    borderRadius: BorderRadius.circular(10),
-    child: Image.network(
-    game['background_image'],
-    height: 250,
-    fit: BoxFit.cover,
-    ),
-    ),
-    SizedBox(height: 20),
-    Padding(
-    padding: EdgeInsets.symmetric(horizontal: 16),
-    child: Text(
-    game['name'],
-    style: TextStyle(
-    fontSize: 32,
-    fontWeight: FontWeight.bold,
-    color: Colors.white,
-    ),
-    ),
-    ),
-    SizedBox(height: 20),
-    Padding(
-    padding: EdgeInsets.symmetric(horizontal: 16),
-    child: Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: [
-    Text(
-    'Rating: ${game['rating'].toString()}',
-    style: TextStyle(
-    fontSize: 20,
-    fontWeight: FontWeight.bold,
-    color: Colors.white,
-    ),
-    ),
-    Text(
-    'Released: ${game['released']}',
-    style: TextStyle(
-    fontSize: 20,
-    fontWeight: FontWeight.bold,
-    color: Colors.white,
-    ),
-    ),
-    ],
-    ),
-    ),
-    SizedBox(height: 20),
-    Padding(
-    padding: EdgeInsets.symmetric(horizontal: 16),
-    child: Text(
-    'Description:',
-    style: TextStyle(
-    fontSize: 20,
-    fontWeight: FontWeight.bold,
-    color: Colors.white,
-    ),
-    ),
-    ),
-    SizedBox(height: 10),
-      Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16),
-        child: Text(
-          game['description_raw'],
-          style: TextStyle(
-            fontSize: 16,
-            color: Colors.white,
-          ),
-          maxLines: null,
-        ),
-      ),
-    SizedBox(height: 20),
-    Padding(
-    padding: EdgeInsets.symmetric(horizontal: 16),
-    child: Text(
-    'Platforms:',
-    style: TextStyle(
-    fontSize: 20,
-    fontWeight: FontWeight.bold,
-    color: Colors.white,
-    ),
-    ),
-    ),
-    SizedBox(height: 10),
-    Padding(
-    padding: EdgeInsets.symmetric(horizontal: 16),
-    child: Wrap(
-    spacing: 8,
-      children: List.generate(game['platforms'].length, (index) {
-        return Chip(
-          label: Text(
-            game['platforms'][index]['platform']['name'],
-            style: TextStyle(color: Colors.white),
-          ),
-          backgroundColor: Colors.blue.shade600,
-        );
-      }),
-    ),
-    ),
-      SizedBox(height: 20),
-      Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16),
-        child: Text(
-          'Genres:',
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
-      ),
-      SizedBox(height: 10),
-      Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16),
-        child: Wrap(
-          spacing: 8,
-          children: List.generate(game['genres'].length, (index) {
-            return Chip(
-              label: Text(
-                game['genres'][index]['name'],
-                style: TextStyle(color: Colors.white),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [Colors.blue.shade800, Colors.black],
+                ),
               ),
-              backgroundColor: Colors.blue.shade600,
-            );
-          }),
-        ),
-      ),
-      SizedBox(height: 20),
-      Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16),
-        child: Text(
-          'Developers:',
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
-      ),
-      SizedBox(height: 10),
-      Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16),
-        child: Wrap(
-          spacing: 8,
-          children: List.generate(game['developers'].length, (index) {
-            return Chip(
-              label: Text(
-                game['developers'][index]['name'],
-                style: TextStyle(color: Colors.white),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    SizedBox(height: 20),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.network(
+                        game['background_image'],
+                        height: 250,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16),
+                      child: Text(
+                        game['name'],
+                        style: TextStyle(
+                          fontSize: 32,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Rating: ${game['rating'].toString()}',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                          Text(
+                            'Released: ${game['released']}',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16),
+                      child: Text(
+                        'Description:',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16),
+                      child: Text(
+                        game['description_raw'],
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.white,
+                        ),
+                        maxLines: null,
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16),
+                      child: Text(
+                        'Platforms:',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16),
+                      child: Wrap(
+                        spacing: 8,
+                        children:
+                            List.generate(game['platforms'].length, (index) {
+                          return Chip(
+                            label: Text(
+                              game['platforms'][index]['platform']['name'],
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            backgroundColor: Colors.blue.shade600,
+                          );
+                        }),
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16),
+                      child: Text(
+                        'Genres:',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16),
+                      child: Wrap(
+                        spacing: 8,
+                        children: List.generate(game['genres'].length, (index) {
+                          return Chip(
+                            label: Text(
+                              game['genres'][index]['name'],
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            backgroundColor: Colors.blue.shade600,
+                          );
+                        }),
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16),
+                      child: Text(
+                        'Developers:',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16),
+                      child: Wrap(
+                        spacing: 8,
+                        children:
+                            List.generate(game['developers'].length, (index) {
+                          return Chip(
+                            label: Text(
+                              game['developers'][index]['name'],
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            backgroundColor: Colors.blue.shade600,
+                          );
+                        }),
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    ElevatedButton(
+                      onPressed: () {
+                        createGame(game);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.blue, // Background color
+                        onPrimary: Colors.white, // Text color
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 12), // Button padding
+                        shape: RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.circular(8), // Button border radius
+                        ),
+                      ),
+                      child: Text(
+                        'Create',
+                        style: TextStyle(fontSize: 16), // Text style
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              backgroundColor: Colors.blue.shade600,
-            );
-          }),
-        ),
-      ),
-      SizedBox(height: 20),
-
-      ElevatedButton(
-        onPressed: () {
-          createGame(game);
-        },
-        style: ElevatedButton.styleFrom(
-          primary: Colors.blue, // Background color
-          onPrimary: Colors.white, // Text color
-          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12), // Button padding
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8), // Button border radius
-          ),
-        ),
-        child: Text(
-          'Create',
-          style: TextStyle(fontSize: 16), // Text style
-        ),
-      ),
-    ],
-    ),
-    ),
-      ),
+            ),
     );
   }
 }
