@@ -217,7 +217,12 @@ class _GameScreenState extends State<GameScreen> {
                     SizedBox(height: 20),
                     ElevatedButton(
                       onPressed: () {
-                        createGame(game);
+                        createGame(game)
+                            .then((_) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text('Game created succesfully.')),
+                          );
+                        });
                       },
                       style: ElevatedButton.styleFrom(
                         primary: Colors.blue, // Background color
