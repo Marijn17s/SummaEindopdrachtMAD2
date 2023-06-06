@@ -5,6 +5,7 @@ import 'dart:convert';
 import '../Database/getgames.dart';
 import '../Database/updategame.dart';
 import '../Database/deletegame.dart';
+import 'update_screen.dart';
 
 class GamesListScreen extends StatefulWidget {
   final void Function() navigateToCrudIndex;
@@ -102,7 +103,7 @@ class _GamesListScreenState extends State<GamesListScreen> {
                         context,
                         MaterialPageRoute(
                           builder: (context) =>
-                              UpdateGameScreen(game: game),
+                              UpdateGameScreen(game),
                         ),
                       );
                     },
@@ -174,9 +175,6 @@ class _GamesListScreenState extends State<GamesListScreen> {
 }
 
 class UpdateGameScreen extends StatelessWidget {
-  final Map<String, dynamic> game;
-
-  UpdateGameScreen({required this.game});
 
   @override
   Widget build(BuildContext context) {
@@ -234,9 +232,8 @@ class _HomeScreenState extends State<HomeScreen> {
   void navigateToCrudIndex() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => GamesListScreen(
-        navigateToCrudIndex: navigateToCrudIndex,
-      )),
+      MaterialPageRoute(builder: (context) => UpdateGameScreen(game: ),
+      ),
     );
   }
 
