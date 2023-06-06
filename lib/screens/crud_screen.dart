@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:eindopdracht5/Database/creategame.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -23,6 +25,10 @@ class _GamesListScreenState extends State<GamesListScreen> {
   @override
   void initState() {
     super.initState();
+    fetchGames();
+  }
+
+  FutureOr onGoBack(dynamic value) {
     fetchGames();
   }
 
@@ -59,6 +65,7 @@ class _GamesListScreenState extends State<GamesListScreen> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Games List'),
@@ -105,7 +112,7 @@ class _GamesListScreenState extends State<GamesListScreen> {
                           builder: (context) =>
                               UpdateGameScreen(gameData: game),
                         ),
-                      );
+                      ).then(onGoBack);
                     },
                   ),
                   IconButton(
@@ -211,14 +218,6 @@ class _HomeScreenState extends State<HomeScreen> {
     widget.setSignedIn(false);
   }
 
-  void navigateToCrudIndex() {
-    // Navigator.push(
-    //   context,
-    //   MaterialPageRoute(builder: (context) => UpdateGameScreen(gameData: widget.game),
-    //   ),
-    // );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -245,10 +244,6 @@ class _HomeScreenState extends State<HomeScreen> {
             subtitle: Text('Rating: ${game['rating']}'),
           );
         },
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: navigateToCrudIndex,
-        child: Icon(Icons.list),
       ),
     );
   }

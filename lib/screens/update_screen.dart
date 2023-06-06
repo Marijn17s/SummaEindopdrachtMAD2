@@ -79,6 +79,7 @@ class _UpdateGameScreenState extends State<UpdateGameScreen> {
                       content: Text('Game updated successfully.'),
                     ),
                   );
+
                   Navigator.pop(context); // Go back to the previous screen
                 })
                     .catchError((error) {
